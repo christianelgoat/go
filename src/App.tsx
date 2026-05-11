@@ -4,6 +4,14 @@ import { getFeedbackData } from './data/sarcasm';
 
 // --- DATA: Flashcards (50) ---
 const FLASHCARDS = [
+  { q: "¿En qué consisten las 5 Fuerzas de Porter?", a: "Es un marco analítico para evaluar la intensidad competitiva y determinar la rentabilidad estructural a largo plazo de un sector.", lvl: "Intermedio" },
+  { q: "¿Por qué un alto 'Poder de los Proveedores' (Porter) destruye rentabilidad?", a: "Los proveedores con poder monopólico pueden elevar precios o reducir calidad de insumos críticos impunemente, asfixiando los márgenes.", lvl: "Intermedio" },
+  { q: "¿Qué representan las 'Barreras de Entrada' en Porter?", a: "Requisitos de capital, patentes o economía de escala que hacen difícil y costoso para una nueva startup ingresar y robar mercado.", lvl: "Intermedio" },
+  { q: "¿Qué diferencia la 'Amenaza de Sustitutos' de la 'Rivalidad entre Competidores'?", a: "Los sustitutos son productos de una industria distinta que cumplen la misma función (ej. trenes vs. aviones comerciales).", lvl: "Avanzado" },
+  { q: "¿Qué variables se agrupan en el análisis PESTEL?", a: "Macroentorno: Fuerzas Políticas, Económicas, Sociales, Tecnológicas, Ecológicas y Legales.", lvl: "Intermedio" },
+  { q: "¿En qué matriz se traduce operativamente el diagnóstico arrojado por PESTEL?", a: "En la Matriz EFE (Evaluación de Factores Externos), clasificándose como Oportunidades o Amenazas cuantificables.", lvl: "Avanzado" },
+  { q: "¿Qué fuerza de Porter se dispara si los 'Costos de Cambio' para el cliente son cercanos a cero?", a: "El Poder de Negociación de los Clientes y la curva de Rivalidad suben, porque el cliente salta de competidor a competidor gratuitamente.", lvl: "Avanzado" },
+  { q: "¿Cómo justifica Harvard el uso de PESTEL en tiempos de alta volatilidad?", a: "PESTEL evita las externalidades ocultas; un modelo de negocio perfecto fracasa si un cambio imprevisto en la tasa de interés (E) anula el flujo de caja requerido.", lvl: "Harvard" },
   { q: "¿Qué busca el análisis FODA a nivel primario?", a: "Identificar recursos internos y la visión del entorno para una posición estratégica clara.", lvl: "Intermedio" },
   { q: "¿Qué evalúa exactamente la Matriz EFI?", a: "Qué tan bien aprovechamos nuestros recursos internos (Fortalezas y Debilidades).", lvl: "Intermedio" },
   { q: "¿Cuál es el propósito central de la Matriz EFE?", a: "Revelar cómo respondemos al entorno externo (Oportunidades y Amenazas).", lvl: "Intermedio" },
@@ -58,6 +66,25 @@ const FLASHCARDS = [
 
 // --- DATA: Simulador MIT (20) ---
 const QUIZ_QUESTIONS = [
+  { q: "Al evaluar Porter, descubrimos que los consumidores pueden cambiar fácilmente nuestro producto por una simple alternativa gratis en Internet y sin fricciones. ¿Qué variable estratégica ha implosionado y qué sucede con el límite de precios?", options: [
+      "El poder de los proveedores aumentó, el costo marginal baja.",
+      "La Amenaza de Sustitutos es inmensa y los Costos de Cambio son 0; esto impone un techo ineludible o tope estricto al precio que podemos cobrar.",
+      "La rivalidad disminuye debido a la digitalización del entorno.",
+      "PESTEL determina que la economía no soporta más nuestra barrera legal."
+    ], a: 1 },
+  { q: "El departamento de Riesgos te avisa usando análisis PESTEL que se avecina una contracción fuerte del PBI y tasas de interés al triple del valor histórico (" +
+        "fuerza Económica). Tu empresa opera con 90% deuda a tasa variable vendiendo bienes de lujo. Tu diagnóstico de supervivencia es:", options: [
+      "Tranquilo, tu EFE lo asimila bien porque las tasas de interés solo afectan cuentas por cobrar.",
+      "Grave, y se traduce en una Amenaza Exógena crítica en tu Matriz EFE cuyo peso exige pivotar hacia estrategia FA o DA urgentemente.",
+      "Incoherente; PESTEL no se ocupa del PBI de un sector en específico.",
+      "La rivalidad de Porter protegerá tu margen de beneficios si creas un cartel local."
+    ], a: 1 },
+  { q: "Bajo la teoría de Porter, si se levanta la desregulación de tu mercado permitiendo entrada sin licencias, ¿cómo impactará tu Matriz EFE?", options: [
+      "Aparece una Amenaza estructural inmediata: Baja drástica en barreras de entrada, elevando la amenaza de nuevos entrantes y asfixiando tus futuros márgenes operativos.",
+      "Causa un aumento repentino en el V.R.I.O. porque ahora puedes compartir licencias.",
+      "Tus Fortalezas en la EFI deben subir mágicamente a peso 0.50.",
+      "Ninguna; la competencia desregularizada favorece tu Poder de Proveedor."
+    ], a: 0 },
   { q: "Una empresa textil analiza su EFI y nota que 'Clima laboral deficiente' tiene calificación 1 y peso 0.20. 'Patentes únicas' tiene calificación 4 y peso 0.05. ¿Qué inferimos sobre el sector según quien diseñó la matriz?", options: [
       "El sector se basa en tecnología no imitable.",
       "La satisfacción operativa impacta mucho más el éxito de la industria que las patentes.",
@@ -344,6 +371,56 @@ function TeoriaView() {
         </>
       ),
       borderColor: "border-[#D4AF37]"
+    },
+    {
+      title: "6. Análisis PESTEL: El Escáner Macroeconómico",
+      content: (
+        <>
+          <p className="text-gray-700 text-lg leading-relaxed mb-4">
+            PESTEL no es una lista de excusas que da el gerente cuando las ventas caen. Es un radar de alerta temprana para identificar fuerzas macroeconómicas que destruirán o catapultarán el modelo de negocio.
+          </p>
+          <ul className="list-none space-y-4 mt-6 ml-4">
+            <li className="flex items-start"><CheckCircle className="text-[#A51C30] mt-1 mr-3 shrink-0" size={20}/> <span className="text-gray-800"><strong>Político & Legal:</strong> Estabilidad gubernamental, políticas fiscales, leyes laborales, regulaciones antimonopolio. Un simple decreto puede evaporar el 40% de tu margen de contribución.</span></li>
+            <li className="flex items-start"><CheckCircle className="text-[#A51C30] mt-1 mr-3 shrink-0" size={20}/> <span className="text-gray-800"><strong>Económico:</strong> Tasa de interés, inflación, ciclos económicos. Si el costo de capital sube, los emprendimientos financiados con deuda agresiva mueren de inanición.</span></li>
+            <li className="flex items-start"><CheckCircle className="text-[#A51C30] mt-1 mr-3 shrink-0" size={20}/> <span className="text-gray-800"><strong>Sociocultural:</strong> Cambios demográficos, estilo de vida, barreras culturales. Si tu mercado envejece y vendes productos para <em>zoomers</em>, vas a quebrar en silencio.</span></li>
+            <li className="flex items-start"><CheckCircle className="text-[#A51C30] mt-1 mr-3 shrink-0" size={20}/> <span className="text-gray-800"><strong>Tecnológico & Ecológico:</strong> Disrupción digital, ciclos térmicos. ¿Cuándo la IA o la presión ambiental volverá obsoleta y penalizada a tu actual línea de montaje?</span></li>
+          </ul>
+        </>
+      ),
+      borderColor: "border-[#A51C30]"
+    },
+    {
+      title: "7. Las 5 Fuerzas de Porter: Anatomía de la Rentabilidad",
+      content: (
+        <>
+          <p className="text-gray-700 text-lg leading-relaxed mb-6">
+            Michael Porter demostró que la rentabilidad no depende de cuán bonito sea tu producto, sino de la estructura de poder de la industria. Si las fuerzas operan en tu contra, ni el mejor management te salvará de bajos márgenes.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gray-50 border-l-4 border-[#A51C30] p-4 shadow-sm">
+              <strong className="text-gray-800">1. Poder de los Proveedores</strong>
+              <p className="text-sm text-gray-700 mt-1">Si hay pocos proveedores para insumos críticos, te dictarán los precios y exprimirán tus ganancias.</p>
+            </div>
+            <div className="bg-gray-50 border-l-4 border-gray-800 p-4 shadow-sm">
+              <strong className="text-gray-800">2. Poder de los Clientes</strong>
+              <p className="text-sm text-gray-700 mt-1">Si los clientes compran en gran volumen y tienen sustitutos, exigirán precios bajos y máxima calidad, reduciendo tu ROI.</p>
+            </div>
+            <div className="bg-gray-50 border-l-4 border-[#A51C30] p-4 shadow-sm">
+              <strong className="text-gray-800">3. Amenaza de Nuevos Entrantes</strong>
+              <p className="text-sm text-gray-700 mt-1">Barreras de entrada (patentes, capital). Si es barato entrar a tu mercado, prepárate para la carnicería competitiva contínua.</p>
+            </div>
+            <div className="bg-gray-50 border-l-4 border-gray-800 p-4 shadow-sm">
+              <strong className="text-gray-800">4. Amenaza de Sustitutos</strong>
+              <p className="text-sm text-gray-700 mt-1">Límites al precio que puedes cobrar porque el cliente simplemente puede usar algo completamente diferente (ej. videoconferencias sustituyendo vuelos de negocios).</p>
+            </div>
+            <div className="bg-gray-50 border-l-4 border-black p-4 shadow-sm md:col-span-2">
+              <strong className="text-gray-900">5. Rivalidad entre Competidores Existentes</strong>
+              <p className="text-sm text-gray-800 mt-1 text-center font-semibold">El epicentro. Si el crecimiento es lento y los costos fijos altos, la rivalidad se reduce a una guerra de precios que destruye valor para todos.</p>
+            </div>
+          </div>
+        </>
+      ),
+      borderColor: "border-black"
     }
   ];
 
